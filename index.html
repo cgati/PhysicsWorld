@@ -32,21 +32,6 @@ window.onload = function()
             path.strokeWidth = 5;
         }
     }
-if (!getting_path)
-        {
-            worldmanager.addBall(event.point, Math.random()*10);
-            console.log("Mouse Clicked");
-        }
-        else
-        {
-            path = new paper.Path();
-            path.strokeColor = 'blue';
-            path.strokeWidth = 20;
-            path.add(event.point);
-            path.strokeWidth = 5;
-        }
-    }
-
 
     tool.onMouseDrag = function(event)
     {
