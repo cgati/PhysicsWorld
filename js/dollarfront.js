@@ -81,6 +81,8 @@ function mouseMoveEvent(x, y)
 	}
 }
 
+//_points[i] = segement[i].point
+
 function mouseUpEvent(x, y)
 {
 	if (_isDown)
