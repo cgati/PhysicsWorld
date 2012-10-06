@@ -18,6 +18,7 @@ window.onload = function()
     paper.setup('myCanvas');
 
     var path;
+    var box;
     var tool = new paper.Tool();
     tool.onMouseDown = function(event)
     {
@@ -48,6 +49,11 @@ window.onload = function()
         if(!getting_path)
             return;
         console.log("need to identify type here");
+
+        var b = path.bounds;
+        var radius = (b.width + b.height)/4;
+        worldmanager.addBall(b.center, radius);
+
         path.remove();
         getting_path = false;
     }
