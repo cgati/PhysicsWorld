@@ -1,10 +1,74 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-		<title>PhysicsWorld</title>
-	</head>
-	<body>
-		
-	</body>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<script type="text/javascript" src="js/lib/paper.js"></script>
+<script type="text/javascript" src="js/PhysicsObject.js"></script>
+<script type="text/javascript" src="js/WorldManager.js"></script>
+
+<script type="text/javascript">
+getting_path = false;
+window.onload = function()
+{
+    paper.setup('myCanvas');
+
+    var path;
+    var tool = new paper.Tool();
+    tool.onMouseDown = function(event)
+    {
+        if (!getting_path)
+        {
+            worldmanager.addBall(event.point, Math.random()*10);
+            console.log("Mouse Clicked");
+        }
+        else
+        {
+            path = new paper.Path();
+            path.strokeColor = 'blue';
+            path.strokeWidth = 20;
+            path.add(event.point);
+            path.strokeWidth = 5;
+        }
+    }
+if (!getting_path)
+        {
+            worldmanager.addBall(event.point, Math.random()*10);
+            console.log("Mouse Clicked");
+        }
+        else
+        {
+            path = new paper.Path();
+            path.strokeColor = 'blue';
+            path.strokeWidth = 20;
+            path.add(event.point);
+            path.strokeWidth = 5;
+        }
+    }
+
+
+    tool.onMouseDrag = function(event)
+    {
+        if(!getting_path)
+            return;
+        path.add(event.point);
+    }
+
+    tool.onMouseUp = function(event)
+    {
+        if(!getting_path)
+            return;
+        console.log("need to identify type here");
+        path.remove();
+        getting_path = false;
+    }
+}
+</script>
+</head>
+<body>
+    <h1>Experimental Stuff</h1>
+    <button id="drawObject" onClick="getting_path=true;">Draw Object</button>
+    <canvas style="background:#DDDDDD;" id="myCanvas" resize></canvas>
+</body>
 </html>
