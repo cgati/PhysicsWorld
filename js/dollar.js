@@ -14,24 +14,24 @@
  *		Redmond, WA 98052
  *		awilson@microsoft.com
  *
- *		Yang Li, Ph.D.
+ *		yang Li, Ph.D.
  *		Department of Computer Science and Engineering
  * 		University of Washington
  *		The Allen Center, Box 352350
  *		Seattle, WA 98195-2840
  * 		yangli@cs.washington.edu
  *
- * The Protractor enhancement was published by Yang Li and programmed here by 
+ * The Protractor enhancement was published by yang Li and programmed here by 
  * Jacob O. Wobbrock.
  *
- *	Li, Y. (2010). Protractor: A fast and accurate gesture 
+ *	Li, y. (2010). Protractor: A fast and accurate gesture 
  *	  recognizer. Proceedings of the ACM Conference on Human 
  *	  Factors in Computing Systems (CHI '10). Atlanta, Georgia
- *	  (April 10-15, 2010). New York: ACM Press, pp. 2169-2172.
+ *	  (April 10-15, 2010). New york: ACM Press, pp. 2169-2172.
  * 
  * This software is distributed under the "New BSD License" agreement:
  * 
- * Copyright (c) 2007-2011, Jacob O. Wobbrock, Andrew D. Wilson and Yang Li.
+ * Copyright (c) 2007-2011, Jacob O. Wobbrock, Andrew D. Wilson and yang Li.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,32 +46,32 @@
  *      products derived from this software without specific prior written
  *      permission.
  *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
- * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
- * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * THIS SOFTWARE IS PROVIDED By THE COPyRIGHT HOLDERS AND CONTRIBUTORS "AS
+ * IS" AND ANy ExPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITy AND FITNESS FOR A PARTICULAR
  * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL Jacob O. Wobbrock OR Andrew D. Wilson
- * OR Yang Li BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, 
+ * OR yang Li BE LIABLE FOR ANy DIRECT, INDIRECT, INCIDENTAL, SPECIAL, ExEMPLARy, 
  * OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
  * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
- * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANy THEORy OF LIABILITy, WHETHER IN CONTRACT, 
+ * STRICT LIABILITy, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANy WAy
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITy OF SUCH DAMAGE.
 **/
 //
 // Point class
 //
 function Point(x, y) // constructor
 {
-	this.X = x;
-	this.Y = y;
+	this.x = x;
+	this.y = y;
 }
 //
 // Rectangle class
 //
 function Rectangle(x, y, width, height) // constructor
 {
-	this.X = x;
-	this.Y = y;
+	this.x = x;
+	this.y = y;
 	this.Width = width;
 	this.Height = height;
 }
@@ -199,8 +199,8 @@ function Resample(points, n)
 		var d = Distance(points[i - 1], points[i]);
 		if ((D + d) >= I)
 		{
-			var qx = points[i - 1].X + ((I - D) / d) * (points[i].X - points[i - 1].X);
-			var qy = points[i - 1].Y + ((I - D) / d) * (points[i].Y - points[i - 1].Y);
+			var qx = points[i - 1].x + ((I - D) / d) * (points[i].x - points[i - 1].x);
+			var qy = points[i - 1].y + ((I - D) / d) * (points[i].y - points[i - 1].y);
 			var q = new Point(qx, qy);
 			newpoints[newpoints.length] = q; // append new point 'q'
 			points.splice(i, 0, q); // insert 'q' at position i in points s.t. 'q' will be the next i
@@ -211,14 +211,14 @@ function Resample(points, n)
 	// somtimes we fall a rounding-error short of adding the last point, so add it if so
 	if (newpoints.length == n - 1)
 	{
-		newpoints[newpoints.length] = new Point(points[points.length - 1].X, points[points.length - 1].Y);
+		newpoints[newpoints.length] = new Point(points[points.length - 1].x, points[points.length - 1].y);
 	}
 	return newpoints;
 }
 function IndicativeAngle(points)
 {
 	var c = Centroid(points);
-	return Math.atan2(c.Y - points[0].Y, c.X - points[0].X);
+	return Math.atan2(c.y - points[0].y, c.x - points[0].x);
 }	
 function RotateBy(points, radians) // rotates points around centroid
 {
@@ -229,8 +229,8 @@ function RotateBy(points, radians) // rotates points around centroid
 	var newpoints = new Array();
 	for (var i = 0; i < points.length; i++)
 	{
-		var qx = (points[i].X - c.X) * cos - (points[i].Y - c.Y) * sin + c.X
-		var qy = (points[i].X - c.X) * sin + (points[i].Y - c.Y) * cos + c.Y;
+		var qx = (points[i].x - c.x) * cos - (points[i].y - c.y) * sin + c.x
+		var qy = (points[i].x - c.x) * sin + (points[i].y - c.y) * cos + c.y;
 		newpoints[newpoints.length] = new Point(qx, qy);
 	}
 	return newpoints;
@@ -241,8 +241,8 @@ function ScaleTo(points, size) // non-uniform scale; assumes 2D gestures (i.e., 
 	var newpoints = new Array();
 	for (var i = 0; i < points.length; i++)
 	{
-		var qx = points[i].X * (size / B.Width);
-		var qy = points[i].Y * (size / B.Height);
+		var qx = points[i].x * (size / B.Width);
+		var qy = points[i].y * (size / B.Height);
 		newpoints[newpoints.length] = new Point(qx, qy);
 	}
 	return newpoints;
@@ -253,8 +253,8 @@ function TranslateTo(points, pt) // translates points' centroid
 	var newpoints = new Array();
 	for (var i = 0; i < points.length; i++)
 	{
-		var qx = points[i].X + pt.X - c.X;
-		var qy = points[i].Y + pt.Y - c.Y;
+		var qx = points[i].x + pt.x - c.x;
+		var qy = points[i].y + pt.y - c.y;
 		newpoints[newpoints.length] = new Point(qx, qy);
 	}
 	return newpoints;
@@ -265,9 +265,9 @@ function Vectorize(points) // for Protractor
 	var vector = new Array();
 	for (var i = 0; i < points.length; i++)
 	{
-		vector[vector.length] = points[i].X;
-		vector[vector.length] = points[i].Y;
-		sum += points[i].X * points[i].X + points[i].Y * points[i].Y;
+		vector[vector.length] = points[i].x;
+		vector[vector.length] = points[i].y;
+		sum += points[i].x * points[i].x + points[i].y * points[i].y;
 	}
 	var magnitude = Math.sqrt(sum);
 	for (var i = 0; i < vector.length; i++)
@@ -323,8 +323,8 @@ function Centroid(points)
 	var x = 0.0, y = 0.0;
 	for (var i = 0; i < points.length; i++)
 	{
-		x += points[i].X;
-		y += points[i].Y;
+		x += points[i].x;
+		y += points[i].y;
 	}
 	x /= points.length;
 	y /= points.length;
@@ -332,19 +332,19 @@ function Centroid(points)
 }	
 function BoundingBox(points)
 {
-	var minX = +Infinity, maxX = -Infinity, minY = +Infinity, maxY = -Infinity;
+	var minx = +Infinity, maxx = -Infinity, miny = +Infinity, maxy = -Infinity;
 	for (var i = 0; i < points.length; i++)
 	{
-		if (points[i].X < minX)
-			minX = points[i].X;
-		if (points[i].X > maxX)
-			maxX = points[i].X;
-		if (points[i].Y < minY)
-			minY = points[i].Y;
-		if (points[i].Y > maxY)
-			maxY = points[i].Y;
+		if (points[i].x < minx)
+			minx = points[i].x;
+		if (points[i].x > maxx)
+			maxx = points[i].x;
+		if (points[i].y < miny)
+			miny = points[i].y;
+		if (points[i].y > maxy)
+			maxy = points[i].y;
 	}
-	return new Rectangle(minX, minY, maxX - minX, maxY - minY);
+	return new Rectangle(minx, miny, maxx - minx, maxy - miny);
 }	
 function PathDistance(pts1, pts2)
 {
@@ -362,8 +362,8 @@ function PathLength(points)
 }		
 function Distance(p1, p2)
 {
-	var dx = p2.X - p1.X;
-	var dy = p2.Y - p1.Y;
+	var dx = p2.x - p1.x;
+	var dy = p2.y - p1.y;
 	return Math.sqrt(dx * dx + dy * dy);
 }
 function Deg2Rad(d) { return (d * Math.PI / 180.0); }
