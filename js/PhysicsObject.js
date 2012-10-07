@@ -19,12 +19,12 @@ PhysicsObject.prototype.initiallize = function(shape)
 
 PhysicsObject.prototype.step = function(delta)
 {
-    if (!this.grabbed)
-    {
-        this.position = this.position.add(this.velocity.normalize(this.velocity.length*delta));
-        this.shape.position = this.position;
-        this.shape.rotate(this.angular_vel*delta);
-    }
+    if (this.is_static || this.grabbed)
+        return;
+
+    this.position = this.position.add(this.velocity.normalize(this.velocity.length*delta));
+    this.shape.position = this.position;
+    this.shape.rotate(this.angular_vel*delta);
 };
 
 function PhysicsBox(top_left, bot_right)

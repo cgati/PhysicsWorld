@@ -31,12 +31,14 @@ WorldManager.prototype.step = function(event)
 WorldManager.prototype.addBall = function(position, radius)
 {
     var ball = new PhysicsBall(position, radius)
+    ball.is_static = this.create_static;
     this.objects[this.objects.length] = ball;
 }
 
 WorldManager.prototype.addBox = function(top_left, bot_right)
 {
     var box = new PhysicsBox(top_left, bot_right)
+    box.is_static = this.create_static;
     this.objects[this.objects.length] = box;
 }
 

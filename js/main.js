@@ -15,7 +15,6 @@ window.onload = function()
             var hitResult = paper.project.hitTest(event.point);
             if(hitResult){
                 draggedObj = hitResult.item;
-                draggedObj.physics.velocity = new paper.Point(0,0);
                 draggedObj.physics.grabbed = true;
             }
         }
@@ -37,12 +36,12 @@ window.onload = function()
 
     tool.onMouseDrag = function(event)
     {
-        if(getting_path)
+        if(getting_path && !moveObj)
         {
             path.add(event.point);
         }
 
-        if(draggedObj)
+        else if(draggedObj)
         {
             draggedObj.position = event.point;
             draggedObj.physics.position = event.point;
@@ -54,6 +53,8 @@ window.onload = function()
         if (draggedObj)
         {
             draggedObj.physics.grabbed = false;
+            draggedObj.physics.velocity.x = 0;
+            draggedObj.physics.velocity.y = 0;
             draggedObj = null;
         }
 
