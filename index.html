@@ -22,7 +22,7 @@
     	<div id="drawObject"  onClick="getting_path=!getting_path; $(this).toggleClass('selected');">Draw Object</div>
     	<div id="dragObject"  onClick="moveObj=!moveObj; $(this).toggleClass('selected');">Drag Object</div>
     	<div id="pauseButton" onClick="worldmanager.paused = !worldmanager.paused; $(this).toggleClass('selected');">Pause/Play</div>
-    	<div id="pauseButton" onClick="worldmanager.create_static = !worldmanager.create_static; $(this).toggleClass('selected');">Place Static</div>
+    	<div id="pauseButton" onClick="worldmanager.defaults.is_static = !worldmanager.defaults.is_static; $(this).toggleClass('selected');">Place Static</div>
     </div>
 
     <ol id="obj_settings">
