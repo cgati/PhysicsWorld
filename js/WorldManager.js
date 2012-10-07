@@ -3,6 +3,7 @@ function WorldManager()
     this.objects = new Array();
     this.gravity = new paper.Point(0,2);
     this.paused = false;
+    this.create_static = false;
 }
 
 WorldManager.prototype.step = function(event)
@@ -21,12 +22,14 @@ WorldManager.prototype.step = function(event)
 WorldManager.prototype.addBall = function(position, radius)
 {
     var ball = new PhysicsBall(position, radius)
+    ball.is_static = this.create_static;
     this.objects[this.objects.length] = ball;
 }
 
 WorldManager.prototype.addBox = function(top_left, bot_right)
 {
     var box = new PhysicsBox(top_left, bot_right)
+    box.is_static = this.create_static;
     this.objects[this.objects.length] = box;
 }
 
