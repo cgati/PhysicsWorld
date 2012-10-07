@@ -1,9 +1,6 @@
 getting_path = false;
 moveObj = false;
 
-
-
-
 window.onload = function()
 {
     paper.setup('myCanvas');
@@ -43,48 +40,51 @@ window.onload = function()
             path.add(event.point);
         }
 
-        if(draggedObj){
+        if(draggedObj)
+        {
             draggedObj.position = event.point;
         }
     }
 
     tool.onMouseUp = function(event)
     {
-        if(draggedObj){
+        if (draggedObj)
+        {
             draggedObj = null;
         }
 
-        if(getting_path){
+        if (getting_path)
+        {
             var seg_points = new Array();
 
-        //The path object gives back an arrau of segment objects which have a
-        //point property. The recognizer needs an array of points, so we have
-        //to construct a new array here.
-        for(var i = 0; i < path.segments.length; i++)
-            seg_points[i] = path.segments[i].point;
+            //The path object gives back an arrau of segment objects which have a
+            //point property. The recognizer needs an array of points, so we have
+            //to construct a new array here.
+            for(var i = 0; i < path.segments.length; i++)
+                seg_points[i] = path.segments[i].point;
 
-        //Run the recognizer to check if it's a circle
-        var recog = new DollarRecognizer();
-        var result = recog.Recognize(seg_points, true);
-        console.log("Recognizer result:" + result.Name + ", " +
-                    Math.round(result.Score*100)/100);
+            //Run the recognizer to check if it's a circle
+            var recog = new DollarRecognizer();
+            var result = recog.Recognize(seg_points, true);
+            console.log("Recognizer result:" + result.Name + ", " +
+                        Math.round(result.Score*100)/100);
 
-        //Insert a new ball if the drawing is a circle
-        if (result.Name == 'circle')
-        {
-            var b = path.bounds;
-            var radius = (b.width + b.height)/4;
-            worldmanager.addBall(b.center, radius);
-        }
+            //Insert a new ball if the drawing is a circle
+            switch (result.Name)
+            {
+                case 'circle':
+                    var b = path.bounds;
+                    var radius = (b.width + b.height)/4;
+                    worldmanager.addBall(b.center, radius);
+                    break;
+                case 'rectangle':
+                    var b = path.bounds;
+                    worldmanager.addBox(b.topLeft, b.bottomRight);
+                    break;
+            }
 
-        if (result.Name == 'rectangle')
-        {
-            var b = path.bounds;
-            worldmanager.addBox(b.topLeft, b.bottomRight);
-        }
-
-        path.remove();
-        getting_path = false;
+            path.remove();
+            getting_path = false;
         }
         
     }
