@@ -3,15 +3,13 @@ function WorldManager()
     this.objects = new Array();
     this.paused = false;
 
-    this.defaults = {
-        is_static: false,
-        velocity: new paper.Point(0, 0),
-        angular_vel: 0,
-        mass: 0,
-        restitution: 0,
-
-        fill_color: 'black'
-    };
+    this.defaults = new PhysicsAttributes(
+        false, 
+        new paper.Point(0,0),
+        0,
+        0,
+        0,
+        'black');
 
     this.world_settings = {
         gravity: new paper.Point(0, 2)
@@ -48,5 +46,3 @@ WorldManager.prototype.addTri = function(position, radius)
     var tri = new PhysicsTriangle(position, radius, this.defaults)
     this.objects[this.objects.length] = tri;
 }
-
-worldmanager = new WorldManager();

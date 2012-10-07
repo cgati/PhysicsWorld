@@ -14,6 +14,11 @@
 <script type="text/javascript" src="js/PhysicsObject.js"></script>
 <script type="text/javascript" src="js/WorldManager.js"></script>
 
+<script type="text/javascript" src="js/PhysicsTool.js"></script>
+<script type="text/javascript" src="js/DrawTool.js"></script>
+<script type="text/javascript" src="js/HandTool.js"></script>
+<script type="text/javascript" src="js/ToolBox.js"></script>
+
 <script type="text/javascript" src="js/main.js"></script>
 
 <script type="text/javascript">
@@ -30,8 +35,8 @@ $(document).ready(function(){
 
     <h1>Experimental Stuff</h1>
     <div id="buttons">
-    	<div id="drawObject"  onClick="getting_path=!getting_path; $(this).toggleClass('selected');">Draw Object</div>
-    	<div id="dragObject"  onClick="moveObj=!moveObj; $(this).toggleClass('selected');">Drag Object</div>
+    	<div id="drawObject"  onClick="toolbox.select(drawtool)">Draw Object</div>
+    	<div id="dragObject"  onClick="toolbox.select(handtool)">Drag Object</div>
     	<div id="pauseButton" onClick="worldmanager.paused = !worldmanager.paused; $(this).toggleClass('selected');">Pause/Play</div>
     	<!--<div id="pauseButton" onClick="worldmanager.defaults.is_static = !worldmanager.defaults.is_static; $(this).toggleClass('selected');">Place Static</div>-->
     </div>
