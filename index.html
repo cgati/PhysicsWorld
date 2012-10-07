@@ -5,6 +5,7 @@
 
 <link rel="stylesheet" type="text/css" href="css/reset.css">
 <link rel="stylesheet" type="text/css" href="css/main.css">
+<link rel="stylesheet" type="text/css" href="css/drawer.css" media="screen" />
 
 <script type="text/javascript" src="js/lib/paper.js"></script>
 <script type="text/javascript" src="js/lib/dollar.js"></script>
@@ -14,6 +15,16 @@
 <script type="text/javascript" src="js/WorldManager.js"></script>
 
 <script type="text/javascript" src="js/main.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".trigger").click(function(){
+		$(".panel").toggle("fast");
+		$(this).toggleClass("active");
+		return false;
+	});
+});
+</script>
 </head>
 <body>
 
@@ -22,18 +33,49 @@
     	<div id="drawObject"  onClick="getting_path=!getting_path; $(this).toggleClass('selected');">Draw Object</div>
     	<div id="dragObject"  onClick="moveObj=!moveObj; $(this).toggleClass('selected');">Drag Object</div>
     	<div id="pauseButton" onClick="worldmanager.paused = !worldmanager.paused; $(this).toggleClass('selected');">Pause/Play</div>
-    	<div id="pauseButton" onClick="worldmanager.defaults.is_static = !worldmanager.defaults.is_static; $(this).toggleClass('selected');">Place Static</div>
+    	<!--<div id="pauseButton" onClick="worldmanager.defaults.is_static = !worldmanager.defaults.is_static; $(this).toggleClass('selected');">Place Static</div>-->
     </div>
 
-    <ol id="obj_settings">
-    	<li id="obj_static"><a href="#">Static</a></li>
-    	<li id="obj_velocity_x"><a href="#">Velocity-x</a></li>
-    	<li id="obj_velocity_y"><a href="#">Velocity-y</a></li>
-    	<li id="obj_mass"><a href="#">Mass</a></li>
-    	<li id="obj_restitution"><a href="#">Restitution</a></li>
-    	<li id="obj_angular_velocity"><a href="#">Angular Velocity</a></li>
-    	<li id="obj_color"><a href="#">Color</a></li>
-    </ol>
+    <div class="panel">
+	<div class="columns">
+		<div class="colleft">
+		<h3>Navigation</h3>
+			<ul>
+				<li id="obj_static">
+					<label for="is_static">Static</label>
+					<input type="checkbox" name="static" id="is_static">
+				</li>
+		    	<li id="obj_velocity_x">
+		    		<label for="vel-x">Velocity-x</label>
+		    		<input type="text" name="velocityx" id="vel-x">
+		    	</li>
+		    	<li id="obj_velocity_y">
+		    		<label for="vel-y">Velocity-y</label>
+		    		<input type="text" name="velocityy" id="vel-y">
+		    	</li>
+		    	<li id="obj_mass">
+		    		<label for="mass">Mass</label>
+		    		<input type="text" name="obj-mass" id="mass">
+		    	</li>
+		    	<li id="obj_restitution">
+		    		<label for="rest">Restitution</label>
+		    		<input type="text" name="obj-restitution" id="rest">
+		    	</li>
+		    	<li id="obj_angular_velocity">
+		    		<label for="angvel">Angular Velocity</label>
+		    		<input type="text" name="ang-vel" id="angvel">
+		    	</li>
+		    	<li id="obj_color">
+		    		<label for="color">Color</label>
+		    		<input type="text" name="ang-vel" id="color">
+		    	</li>
+		    	<li id="obj-update"><a href="#">Update</a></li>
+			</ul>
+		</div>
+	
+	</div>
+</div>
+<a class="trigger" href="#"></a>
     <canvas style="background:#DDDDDD;" id="myCanvas" resize></canvas>
 </body>
 </html>
