@@ -1,9 +1,11 @@
-#buttons{
+#buttons
+{
 	/*border: 1px solid blue;*/
 	width: 500px;
 }
 
-#buttons div{
+#buttons div
+{
 	height: 150px;
 	border: 1px dotted #000;
 	font-size: 150%;
@@ -13,24 +15,34 @@
     cursor: pointer;
 }
 
-#drawObject{
+#buttons div:hover
+{
+	border: blue;
+}
+
+#drawObject
+{
+	background: green;
+}
+#drawObject.selected
+{
 	background: red;
 }
 
-#dragObjectOn{
-	background: yellow;
-}
-
-#buttons #dragObjectOn:hover{
-	background: black;
-	display: none;
-}
-
-#buttons #dragObjectOff{
-	background: blue;
-	display: none;
-}
-
-#pause{
+#dragObject
+{
 	background: green;
+}
+#dragObject.selected
+{
+	background: red;
+}
+
+#pauseButton
+{
+	background: green;
+}
+#pauseButton.selected
+{
+	background: red;
 }

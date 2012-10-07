@@ -19,18 +19,18 @@ window.onload = function()
                 draggedObj.physics.grabbed = true;
             }
         }
-        else if (!getting_path)
-        {
-            worldmanager.addBall(event.point, Math.random()*10);
-            console.log("Mouse Clicked");
-        }
-        else
+        else if (getting_path)
         {
             path = new paper.Path();
             path.strokeColor = 'blue';
             path.strokeWidth = 20;
             path.add(event.point);
             path.strokeWidth = 5;
+        }
+        else
+        {
+            worldmanager.addBall(event.point, Math.random()*10);
+            console.log("Got Ball!");
         }
 
     }
@@ -88,7 +88,6 @@ window.onload = function()
             }
 
             path.remove();
-            getting_path = false;
         }
         
     }
