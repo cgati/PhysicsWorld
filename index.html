@@ -24,6 +24,16 @@
     	<div id="pauseButton" onClick="worldmanager.paused = !worldmanager.paused; $(this).toggleClass('selected');">Pause/Play</div>
     	<div id="pauseButton" onClick="worldmanager.create_static = !worldmanager.create_static; $(this).toggleClass('selected');">Place Static</div>
     </div>
+
+    <ol id="obj_settings">
+    	<li id="obj_static"><a href="#">Static</a></li>
+    	<li id="obj_velocity_x"><a href="#">Velocity-x</a></li>
+    	<li id="obj_velocity_y"><a href="#">Velocity-y</a></li>
+    	<li id="obj_mass"><a href="#">Mass</a></li>
+    	<li id="obj_restitution"><a href="#">Restitution</a></li>
+    	<li id="obj_angular_velocity"><a href="#">Angular Velocity</a></li>
+    	<li id="obj_color"><a href="#">Color</a></li>
+    </ol>
     <canvas style="background:#DDDDDD;" id="myCanvas" resize></canvas>
 </body>
 </html>
