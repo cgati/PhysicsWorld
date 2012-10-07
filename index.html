@@ -13,10 +13,46 @@
 <script type="text/javascript" src="js/main.js"></script>
 </head>
 <body>
+
+	<style type="text/css">
+		#buttons{
+			/*border: 1px solid blue;*/
+			width: 500px;
+		}
+
+		#buttons div{
+			height: 150px;
+			border: 1px dotted #000;
+			font-size: 150%;
+			font-weight: bold;
+			opacity: 0.7;
+			display: inline;
+		}
+
+		#drawObject{
+			background: red;
+		}
+
+		#dragObject{
+			background: yellow;
+		}
+
+		#pause{
+			background: green;
+		}
+	</style>
+
     <h1>Experimental Stuff</h1>
-    <button id="drawObject" onClick="getting_path=true;">Draw Object</button>
+    <div id="buttons">
+    	<div id="drawObject" onClick="getting_path=true;">Draw Object</div>
+    	<div id="dragObject" onClick="moveObj=!moveObj;">Drag Object</div>
+    	<div id="pause" onClick="worldmanager.paused = !worldmanager.paused;">Pause/Play</div>
+    </div>
+
+
+    <!--<button id="drawObject" onClick="getting_path=true;">Draw Object</button>
     <input type="checkbox" name="action" id="dragObject" value="dragObj" onClick="moveObj=!moveObj;">
-    <label for="dragObject">Drag Objects</label>
+    <label for="dragObject">Drag Objects</label> -->
     <canvas style="background:#DDDDDD;" id="myCanvas" resize></canvas>
 </body>
 </html>
