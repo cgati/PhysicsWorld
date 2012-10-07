@@ -5,9 +5,12 @@ function WorldManager()
 
     this.defaults = {
         is_static: false,
-        init_velocity: new paper.Point(0, 0),
+        velocity: new paper.Point(0, 0),
+        angular_vel: 0,
         mass: 0,
-        restitution: 0
+        restitution: 0,
+
+        fill_color: 'black'
     };
 
     this.world_settings = {
@@ -30,15 +33,13 @@ WorldManager.prototype.step = function(event)
 
 WorldManager.prototype.addBall = function(position, radius)
 {
-    var ball = new PhysicsBall(position, radius)
-    ball.is_static = this.create_static;
+    var ball = new PhysicsBall(position, radius, this.defaults)
     this.objects[this.objects.length] = ball;
 }
 
 WorldManager.prototype.addBox = function(top_left, bot_right)
 {
-    var box = new PhysicsBox(top_left, bot_right)
-    box.is_static = this.create_static;
+    var box = new PhysicsBox(top_left, bot_right, this.defaults)
     this.objects[this.objects.length] = box;
 }
 
