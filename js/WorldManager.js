@@ -3,18 +3,16 @@ function WorldManager()
     this.objects = new Array();
     this.paused = false;
 
-    this.defaults = {
-        is_static: false,
-        velocity: new paper.Point(0, 0),
-        angular_vel: 0,
-        mass: 0,
-        restitution: 0,
-
-        fill_color: 'black'
-    };
+    this.defaults = new PhysicsAttributes(
+        false,
+        new paper.Point(0,0),
+        0,
+        0,
+        0, 
+        'black');
 
     this.world_settings = {
-        gravity: new paper.Point(0, 2)
+        gravity: new paper.Point(0, 0)
     };
 }
 
@@ -26,7 +24,7 @@ WorldManager.prototype.step = function(event)
         for (i=0; i<len; i++)
         {
             this.objects[i].step(event.delta);
-            this.objects[i].velocity = this.objects[i].velocity.add(this.world_settings.gravity);
+            this.objects[i].attributes.velocity = this.objects[i].attributes.velocity.add(this.world_settings.gravity);
         }
     }
 }

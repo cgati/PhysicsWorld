@@ -1,27 +1,43 @@
-function PhysicsObject() { }
+function PhysicsObject(){}
+
+function PhysicsAttributes(is_static, velocity, angular_vel, mass, 
+                    restitution, fill_color)
+{
+    this.velocity = velocity === null || velocity === undefined ? null : velocity.clone();
+    this.is_static = is_static;
+    this.angular_vel = angular_vel;
+    this.mass = mass;
+    this.restitution = restitution;
+    this.fill_color = fill_color;
+}
+
+PhysicsAttributes.prototype.merge = function(other)
+{
+    console.log(other);
+    this.is_static = other.is_static === null ? this.is_static : other.is_static;
+    this.velocity = other.velocity === null ? this.velocity : other.velocity.clone();
+    this.angular_vel = other.angular_vel === null ? this.angular_vel : other.angular_vel;
+    this.mass = other.mass === null ? this.mass : other.mass;
+    this.fill_color = other.fill_color === null ? this.fill_color : other.fill_color;
+};
 
 PhysicsObject.prototype.initiallize = function(shape, defaults)
 {
+    this.position = shape.bounds.center;
     this.shape = shape;
     this.shape.physics = this;
-
-    this.position = shape.bounds.center;
-    this.velocity = defaults.velocity.clone();
-    this.angular_vel = defaults.angular_vel;
-
-    this.mass = defaults.mass;
-    this.restitution = defaults.restitution;
-    this.is_static = defaults.is_static;
-
     this.grabbed = false;
-}
+    this.attributes = new PhysicsAttributes();
+    this.attributes.merge(defaults);
+    console.log(this.attributes);
+};
 
 PhysicsObject.prototype.step = function(delta)
 {
-    if (this.is_static || this.grabbed)
+    if (this.attributes.is_static || this.grabbed)
         return;
 
-    this.position = this.position.add(this.velocity.normalize(this.velocity.length*delta));
+    this.position = this.position.add(this.attributes.velocity.normalize(this.attributes.velocity.length*delta));
     this.shape.position = this.position;
     this.shape.rotate(this.angular_vel*delta);
 };

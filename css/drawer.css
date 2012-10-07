@@ -60,6 +60,11 @@ img {
 border:none;
 }
 
+button{
+	margin-left: 100px;
+	margin-top: 20px;
+}
+
 #container {
 clear: both;
 margin: 0;
