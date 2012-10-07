@@ -18,16 +18,6 @@ WorldManager.prototype.step = function(event)
     }
 }
 
-WorldManager.prototype.pause = function()
-{
-    this.paused = true;
-}
-
-WorldManager.prototype.play = function()
-{
-    this.paused = false;
-}
-
 WorldManager.prototype.addBall = function(position, radius)
 {
     var ball = new PhysicsBall(position, radius)
