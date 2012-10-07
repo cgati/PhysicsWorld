@@ -1,8 +1,18 @@
 function WorldManager()
 {
     this.objects = new Array();
-    this.gravity = new paper.Point(0,2);
     this.paused = false;
+
+    this.defaults = {
+        is_static: false;
+        init_velocity: new paper.Point(0, 0);
+        mass: 0;
+        restitution: 0;
+    }
+
+    this.world_settings = {
+        gravity: new paper.Point(0, 2);
+    }
 }
 
 WorldManager.prototype.step = function(event)
@@ -13,7 +23,7 @@ WorldManager.prototype.step = function(event)
         for (i=0; i<len; i++)
         {
             this.objects[i].step(event.delta);
-            this.objects[i].velocity = this.objects[i].velocity.add(this.gravity);
+            this.objects[i].velocity = this.objects[i].velocity.add(this.world_settings.gravity);
         }
     }
 }
