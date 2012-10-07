@@ -10,6 +10,7 @@
 	font-weight: bold;
 	opacity: 0.7;
 	display: inline;
+    cursor: pointer;
 }
 
 #drawObject{
