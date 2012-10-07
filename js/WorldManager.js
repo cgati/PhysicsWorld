@@ -4,15 +4,15 @@ function WorldManager()
     this.paused = false;
 
     this.defaults = {
-        is_static: false;
-        init_velocity: new paper.Point(0, 0);
-        mass: 0;
-        restitution: 0;
-    }
+        is_static: false,
+        init_velocity: new paper.Point(0, 0),
+        mass: 0,
+        restitution: 0
+    };
 
     this.world_settings = {
-        gravity: new paper.Point(0, 2);
-    }
+        gravity: new paper.Point(0, 2)
+    };
 }
 
 WorldManager.prototype.step = function(event)
