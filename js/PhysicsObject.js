@@ -13,13 +13,18 @@ PhysicsObject.prototype.initiallize = function(shape)
     this.mass = 0;
     this.restitution = 1;
     this.is_static = false;
+
+    this.grabbed = false;
 }
 
 PhysicsObject.prototype.step = function(delta)
 {
-    this.position = this.position.add(this.velocity.normalize(this.velocity.length*delta));
-    this.shape.position = this.position;
-    this.shape.rotate(this.angular_vel*delta);
+    if (!this.grabbed)
+    {
+        this.position = this.position.add(this.velocity.normalize(this.velocity.length*delta));
+        this.shape.position = this.position;
+        this.shape.rotate(this.angular_vel*delta);
+    }
 };
 
 function PhysicsBox(top_left, bot_right)

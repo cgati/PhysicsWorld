@@ -15,6 +15,8 @@ window.onload = function()
             var hitResult = paper.project.hitTest(event.point);
             if(hitResult){
                 draggedObj = hitResult.item;
+                draggedObj.physics.velocity = new paper.Point(0,0);
+                draggedObj.physics.grabbed = true;
             }
         }
         else if (!getting_path)
@@ -43,6 +45,7 @@ window.onload = function()
         if(draggedObj)
         {
             draggedObj.position = event.point;
+            draggedObj.physics.position = event.point;
         }
     }
 
@@ -50,6 +53,7 @@ window.onload = function()
     {
         if (draggedObj)
         {
+            draggedObj.physics.grabbed = false;
             draggedObj = null;
         }
 
