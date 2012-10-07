@@ -1,14 +1,26 @@
 getting_path = false;
+moveObj = false;
+
+
+
+
 window.onload = function()
 {
     paper.setup('myCanvas');
 
     var path;
     var box;
+    var draggedObj;
     var tool = new paper.Tool();
     tool.onMouseDown = function(event)
     {
-        if (!getting_path)
+        if(moveObj){
+            var hitResult = paper.project.hitTest(event.point);
+            if(hitResult){
+                draggedObj = hitResult.item;
+            }
+        }
+        else if (!getting_path)
         {
             worldmanager.addBall(event.point, Math.random()*10);
             console.log("Mouse Clicked");
@@ -21,26 +33,35 @@ window.onload = function()
             path.add(event.point);
             path.strokeWidth = 5;
         }
+
     }
 
     tool.onMouseDrag = function(event)
     {
-        if(!getting_path)
-            return;
-        path.add(event.point);
+        if(getting_path)
+        {
+            path.add(event.point);
+        }
+
+        if(draggedObj){
+            draggedObj.position = event.point;
+        }
     }
 
     tool.onMouseUp = function(event)
     {
-        if(!getting_path)
-            return;
-        var seg_points = new Array();
+        if(draggedObj){
+            draggedObj = null;
+        }
+
+        if(getting_path){
+            var seg_points = new Array();
 
         //The path object gives back an arrau of segment objects which have a
         //point property. The recognizer needs an array of points, so we have
         //to construct a new array here.
         for(var i = 0; i < path.segments.length; i++)
-        	seg_points[i] = path.segments[i].point;
+            seg_points[i] = path.segments[i].point;
 
         //Run the recognizer to check if it's a circle
         var recog = new DollarRecognizer();
@@ -64,6 +85,8 @@ window.onload = function()
 
         path.remove();
         getting_path = false;
+        }
+        
     }
 
     paper.view.onFrame = function(event)
