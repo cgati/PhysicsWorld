@@ -65,4 +65,9 @@ window.onload = function()
         path.remove();
         getting_path = false;
     }
+
+    paper.view.onFrame = function(event)
+    {
+        worldmanager.step(event);
+    }
 }
