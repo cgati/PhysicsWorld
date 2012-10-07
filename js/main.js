@@ -56,6 +56,12 @@ window.onload = function()
             worldmanager.addBall(b.center, radius);
         }
 
+        if (result.Name == 'rectangle')
+        {
+            var b = path.bounds;
+            worldmanager.addBox(b.topLeft, b.bottomRight);
+        }
+
         path.remove();
         getting_path = false;
     }

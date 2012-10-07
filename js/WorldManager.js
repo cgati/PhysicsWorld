@@ -10,14 +10,16 @@ WorldManager.prototype.step = function()
         obj.step(this.dt);
 }
 
-WorldManager.prototype.addObject = function()
-{
-}
-
 WorldManager.prototype.addBall = function(position, radius)
 {
     var ball = new PhysicsBall(position, radius)
     this.objects[this.objects.length] = ball;
+}
+
+WorldManager.prototype.addBox = function(top_left, bot_right)
+{
+    var box = new PhysicsBox(top_left, bot_right)
+    this.objects[this.objects.length] = box;
 }
 
 worldmanager = new WorldManager();
