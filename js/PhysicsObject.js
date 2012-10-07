@@ -45,3 +45,12 @@ function PhysicsBall(position, radius, defaults)
 }
 PhysicsBall.prototype = new PhysicsObject();
 PhysicsBall.prototype.constructor = PhysicsBall;
+
+function PhysicsTriangle(position, radius, defaults){
+    var shape = new paper.Path.RegularPolygon(position, 3, radius);
+    shape.fillColor = defaults.fill_color;
+    this.initiallize(shape, defaults);
+}
+
+PhysicsTriangle.prototype = new PhysicsObject();
+PhysicsTriangle.prototype.constructor = PhysicsTriangle;

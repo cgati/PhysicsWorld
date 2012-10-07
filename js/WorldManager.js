@@ -43,4 +43,10 @@ WorldManager.prototype.addBox = function(top_left, bot_right)
     this.objects[this.objects.length] = box;
 }
 
+WorldManager.prototype.addTri = function(position, radius)
+{
+    var tri = new PhysicsTriangle(position, radius, this.defaults)
+    this.objects[this.objects.length] = tri;
+}
+
 worldmanager = new WorldManager();

@@ -86,6 +86,10 @@ window.onload = function()
                     var b = path.bounds;
                     worldmanager.addBox(b.topLeft, b.bottomRight);
                     break;
+                case 'triangle':
+                    var b = path.bounds;
+                    var radius = (b.width + b.height)/4;
+                    worldmanager.addTri(b.center, radius);
             }
 
             path.remove();
